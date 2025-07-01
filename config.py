@@ -1,4 +1,3 @@
-# Konfigurasi global (misalnya threshold default)
-
+# Konfigurasi global
 DEFAULT_USERNAME = 'admin'
 DEFAULT_PASSWORD = 'admin'

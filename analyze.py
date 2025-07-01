@@ -6,7 +6,6 @@ st.title("📈 Analisis Lengkap Data Pelanggan AMR")
 
 uploaded_file = st.file_uploader("📤 Upload File Data INSTANT AMR (XLSX)", type=["xlsx"])
 
-# Default Threshold jika belum diset
 default_thresholds = {
     "v_drop": 200,
     "arus_min": 0.05,
@@ -37,7 +36,6 @@ if uploaded_file:
             display_cols = [col for col in df.columns if any(x in col.upper() for x in ["LOCATION", "VOLTAGE", "CURRENT", "POWER"])]
             st.dataframe(df[display_cols].head(10))
 
-            # Deteksi indikator teknikal (menggunakan threshold)
             df["v_drop"] = (df["VOLTAGE_L1"] < st.session_state["v_drop"]) |                            (df["VOLTAGE_L2"] < st.session_state["v_drop"]) |                            (df["VOLTAGE_L3"] < st.session_state["v_drop"])
 
             df["arus_hilang"] = (df["CURRENT_L1"] < st.session_state["arus_min"]) &                                 (df["CURRENT_L2"] < st.session_state["arus_min"]) &                                 (df["CURRENT_L3"] < st.session_state["arus_min"])
